@@ -16,13 +16,14 @@ class Login{
     // https://login--danilofranco1.repl.co/?matricula=123&senha=321
     
     static login=(callback_ok,callback_naook,config=null)=>{
-        if (config != null){
-            this.config=config;
-        }
-
-        this.callback_ok=()=>{callback_ok()};
-        this.callback_naook=()=>{callback_naook()};
+        sessionStorage.setItem("logado","false");
+        sessionStorage.setItem("matlogado","");
+        sessionStorage.setItem("nomelogado","");
+        sessionStorage.setItem("acessologado","");
         
+        this.config=config;
+        this.callback_ok=()=>{callback_ok()};
+        this.callback_naook=()=>{callback_naook()};        
         this.estilocss=
         ".fundoLogin{display: flex;justify-content: center;align-items: center;width: 100%;height: 100vh;position: absolute;top: 0px;left: 0px;background-color: rgb(0,0,0,0.75);box-sizing: border-box;}"+
         ".baseLogin{display: flex;justify-content: center;align-items: stretch;width: 50%;box-sizing: inherit;}"+
@@ -107,6 +108,10 @@ class Login{
         btn_cancelar.setAttribute("id","btn_cancelar");
         btn_cancelar.innerHTML="Cancelar";
         btn_cancelar.addEventListener("click",(evt)=>{
+            sessionStorage.setItem("logado","false");
+            sessionStorage.setItem("matlogado","");
+            sessionStorage.setItem("nomelogado","");
+            sessionStorage.setItem("acessologado","");
             this.fechar();
         });
         botoesLogin.appendChild(btn_cancelar);
